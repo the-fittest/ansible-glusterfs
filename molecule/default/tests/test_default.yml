@@ -1,0 +1,10 @@
+# Molecule managed
+---
+
+package:
+  glusterfs-server:
+    installed: true
+service:
+  glusterfs-server:
+    enabled: true
+    running: true

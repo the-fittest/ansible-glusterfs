@@ -1,0 +1,22 @@
+---
+# tasks file for glusterfs
+
+- name: Add PPA for GlusterFS.
+  apt_repository:
+    repo: "ppa:gluster/glusterfs-3.8"
+    state: present
+    update_cache: true
+
+- name: Ensure GlusterFS is installed.
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - "{{ glusterfs_packages }}"
+    - "{{ glusterfs_additional_packages }}"
+
+- name: Ensure GlusterFS is started and enabled at boot.
+  service:
+    name: glusterfs-server
+    enabled: true
+    state: started
